@@ -32,6 +32,6 @@ def test_db():
         now = cur.fetchone()
         cur.close()
         conn.close()
-        return {"db_time": now[0]}
+        return {"dev db_time": now[0]}
     except Exception as e:
         return {"error": str(e)}
