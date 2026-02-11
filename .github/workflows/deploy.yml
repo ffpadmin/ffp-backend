@@ -3,18 +3,24 @@ name: Deploy FastAPI to EC2
 on:
   push:
     branches:
-      - main
+      - main  # deploys on every push to main
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Deploy to EC2 via SSH
+      # 1️⃣ Checkout code (optional, mostly for logging)
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # 2️⃣ SSH to EC2 and run deploy.sh
+      - name: Deploy to EC2
         uses: appleboy/ssh-action@v0.1.7
         with:
-          host: ${{ secrets.EC2_HOST }}
+          host: ${{ secrets.EC2_HOST }}          # e.g., 100.31.22.118
           username: ec2-user
-          key: ${{ secrets.EC2_SSH_KEY }}
+          key: ${{ secrets.EC2_SSH_KEY }}        # your private SSH key
+          port: 22
           script: |
             /home/ec2-user/deploy.sh
