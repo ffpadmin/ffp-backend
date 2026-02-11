@@ -18,7 +18,7 @@ app.add_middleware(
 
 @app.get("/")
 def read_root():
-    return {"message": "FastAPI sync running!"}
+    return {"message": "FastAPI sync from git running!"}
 
 @app.get("/db")
 def test_db():
