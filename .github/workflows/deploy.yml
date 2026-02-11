@@ -14,7 +14,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      # 2️⃣ SSH to EC2 and run updated deploy.sh
+      # 2️⃣ SSH to EC2 and run deploy.sh
       - name: Deploy to EC2
         uses: appleboy/ssh-action@v0.1.7
         with:
@@ -24,4 +24,5 @@ jobs:
           port: 22
           script: |
             /home/ec2-user/deploy.sh
+
 
